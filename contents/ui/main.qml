@@ -253,8 +253,8 @@ PlasmoidItem {
 
 		Layout.minimumWidth: shouldShow ? -1 : 0
 		Layout.minimumHeight: shouldShow ? -1 : 0
-		Layout.preferredWidth: shouldShow ? (root.hasVisibleDevices ? row.implicitWidth : placeholderIcon.width) : 0
-		Layout.preferredHeight: shouldShow ? (root.hasVisibleDevices ? row.implicitHeight : placeholderIcon.height) : 0
+		Layout.preferredWidth: shouldShow ? (root.hasVisibleDevices ? mainLayout.implicitWidth : placeholderIcon.width) : 0
+		Layout.preferredHeight: shouldShow ? (root.hasVisibleDevices ? mainLayout.implicitHeight : placeholderIcon.height) : 0
 		Layout.maximumWidth: shouldShow ? -1 : 0
 		Layout.maximumHeight: shouldShow ? -1 : 0
 
@@ -267,28 +267,36 @@ PlasmoidItem {
 			visible: !root.hasVisibleDevices && (inEditMode || root.allDevicesHidden)
 		}
 
-		RowLayout {
-			id: row
-			anchors.fill: parent
-			spacing: Kirigami.Units.smallSpacing
+		GridLayout {
+			id: mainLayout
+			anchors.centerIn: parent
+			rowSpacing: Kirigami.Units.smallSpacing
+			columnSpacing: Kirigami.Units.smallSpacing
+			flow: Plasmoid.formFactor === PlasmaCore.Types.Vertical ? GridLayout.TopToBottom : GridLayout.LeftToRight
 			visible: root.hasVisibleDevices
 
 			Repeater {
 				model: root.trayItems
 
-				RowLayout {
-					spacing: 2
+				GridLayout {
+					rowSpacing: 2
+					columnSpacing: 2
+					flow: mainLayout.flow
 
 					Kirigami.Icon {
 						source: modelData.icon
 						Layout.preferredWidth: Kirigami.Units.iconSizes.smallMedium
 						Layout.preferredHeight: Kirigami.Units.iconSizes.smallMedium
+						Layout.alignment: Qt.AlignCenter
 					}
 
 					PlasmaComponents.Label {
 						// i18n: %1 is the charge percentage value.
 						text: i18n("%1%", modelData.percentage)
 						font.pixelSize: Kirigami.Theme.smallFont.pixelSize
+						Layout.alignment: Qt.AlignCenter
+						horizontalAlignment: Text.AlignHCenter
+						verticalAlignment: Text.AlignVCenter
 					}
 				}
 			}
