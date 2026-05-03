@@ -1,0 +1,806 @@
+[33mcommit 5aa2c227fab4b11ec06e3b8d1e8723ab99c671b5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: TheDogORB <thedogorb@proton.me>
+Date:   Sun May 3 20:47:25 2026 +0200
+
+    Added helper script razer_info.py, and RazerProvider.qml to support Razer devices
+
+[33mcommit caa1aac217c2579ee2fefa407087ffd04be6219e[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: TheDogORB <thedogorb@proton.me>
+Date:   Sun May 3 20:32:32 2026 +0200
+
+    Added RazerProvider.qml to support Razer devices
+
+[33mcommit 2c9bbd49037aad615e6adf5cbbb6529c578bd94f[m
+Author: TheDogORB <thedogorb@proton.me>
+Date:   Sun May 3 20:11:06 2026 +0200
+
+    Added helper script for RazerProvider.qml
+
+[33mcommit f35d3f34ae865e4412c0a0300f994c43e2cb8552[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Wed Mar 25 21:16:47 2026 +0200
+
+    chore: bumped version
+
+[33mcommit f6f344fc8c4dcab086b84202997ae5f507b96d28[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Wed Mar 25 21:15:52 2026 +0200
+
+    feat: rebuilt with updated dutch translations
+
+[33mcommit f9605945c759e1f5eb893ae02b670fae4ce44563[m
+Merge: 3a480cb af86e68
+Author: itayavra <itay.avra@gmail.com>
+Date:   Wed Mar 25 20:28:32 2026 +0200
+
+    Merge pull request #22 from Vistaus/master
+    
+    Updated Dutch translation
+
+[33mcommit af86e683d32e13bb181b66d5b95b8d4f600d3a35[m
+Author: Heimen Stoffels <vistausss@fastmail.com>
+Date:   Wed Mar 25 16:45:52 2026 +0100
+
+    Updated Dutch translation
+
+[33mcommit 3a480cb39a81dfb0839ea3fff28f5caf048ebe5f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Wed Mar 25 01:50:27 2026 +0200
+
+    feat: rebuilt with updated hungarian translations
+
+[33mcommit 081bdee9fa0a118d02b2c606d3c3d566e49a7832[m
+Merge: 7ec5c8e ebb6c5f
+Author: itayavra <itay.avra@gmail.com>
+Date:   Wed Mar 25 01:47:13 2026 +0200
+
+    Merge pull request #21 from smileyhead/master
+    
+    Update Hungarian translation
+
+[33mcommit ebb6c5f00abef67a1ecab1af8137e8af50334164[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Tue Mar 24 23:57:43 2026 +0100
+
+    Update hu.po
+
+[33mcommit 7ec5c8e3a9a7151e893ae1c8e00224d341f795c5[m
+Merge: 05f63a6 0ffa1b5
+Author: itayavra <itay.avra@gmail.com>
+Date:   Tue Mar 24 22:28:05 2026 +0200
+
+    Merge pull request #20 from itayavra/appearance-customization
+    
+    Appearance customization
+
+[33mcommit 0ffa1b5f9c794b898e7526d2e0a8e194469a15ea[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Mar 24 22:24:44 2026 +0200
+
+    chore: bumped version
+
+[33mcommit 85ce89f8ac2df61d96f5b0b804c4ac1b64f2b01f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Mar 24 22:23:40 2026 +0200
+
+    feat: update hebrew translations
+
+[33mcommit c2d727b3cb302fb0fdaf2743257ed3a43df24026[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Mar 24 22:12:49 2026 +0200
+
+    feat: Add appearance customization settings for font and icon sizes and disabled OpenLinkHub configuration when toggled off
+
+[33mcommit 05f63a622317f87b1a543883679226e78887f099[m
+Merge: 3cf5d31 d688961
+Author: itayavra <itay.avra@gmail.com>
+Date:   Tue Mar 24 21:58:00 2026 +0200
+
+    Merge pull request #19 from itayavra/support-vertical-panels
+    
+    feat: align devices and battery vertically when widget is added to a …
+
+[33mcommit d6889618ce79908bb65780b4233b260ffd5bbbf3[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Mar 24 21:37:28 2026 +0200
+
+    feat: align devices and battery vertically when widget is added to a vertical panel
+
+[33mcommit 3cf5d3197d0230c1ff024fe850752daa3e1f5910[m
+Merge: 99db8a8 b253a02
+Author: itayavra <itay.avra@gmail.com>
+Date:   Tue Mar 24 21:23:15 2026 +0200
+
+    Merge pull request #18 from xTeixeira/fix-logitech-mouse-icon
+    
+    Add device type override for Logitech G Pro X mice
+
+[33mcommit b253a02fe669220fd6de8bc8956bca656eeb0fa7[m
+Author: Antonio Teixeira <antoniolrt@gmail.com>
+Date:   Tue Mar 24 10:57:55 2026 -0300
+
+    Add device type override for Logitech G Pro X mice
+    
+    When connected via USB cable, the Logitech G Pro X Superlight reports
+    as a keyboard.
+
+[33mcommit 99db8a835e5d1e782f7789ca39c1c45e39128003[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Feb 13 18:34:49 2026 +0200
+
+    chore: update version
+
+[33mcommit 1dedaa73614679a1c30aa271ccf22de3b03b8da3[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Feb 13 18:32:38 2026 +0200
+
+    feat: Move translation status table to the main README.md with enhanced details and dynamic generation.
+
+[33mcommit a04dcc05a08929c211bb4470200690326dd77ce7[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Feb 13 18:17:10 2026 +0200
+
+    feat: add Hebrew translation and comprehensive translation workflow documentation.
+
+[33mcommit 3e8e7015f75c25dd2dee086dc4a871441ab82f67[m
+Merge: 194ee7e debd9a3
+Author: itayavra <itay.avra@gmail.com>
+Date:   Sat Jan 3 21:53:43 2026 +0200
+
+    Merge pull request #16 from itayavra/build-translations
+    
+    Build translations
+
+[33mcommit debd9a3461328836ad07848bfa8e9e5921f6e526[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 21:52:33 2026 +0200
+
+    fix dev scripts to support translation files
+    created an updated-translations script for merge && build
+
+[33mcommit 050b12ec1c1adfe8e408793c3b7db99fdf049403[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 21:33:05 2026 +0200
+
+    fixed translations build to create a directory if missing
+    built translation files for new languages
+
+[33mcommit a2eac5ced2d283034913d2e9cf1d9d255a06e38c[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 21:21:46 2026 +0200
+
+    merged translations with new script
+
+[33mcommit f44c1c956573a20b12881239c95a1c42a363fbe0[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 21:15:17 2026 +0200
+
+    updated i18n scripts to plasma 6 without relying on kreadconfig5
+
+[33mcommit 194ee7e648c44639537785f9fe677e234a922902[m
+Merge: 92db007 6ae4487
+Author: itayavra <itay.avra@gmail.com>
+Date:   Sat Jan 3 21:09:36 2026 +0200
+
+    Merge pull request #15 from Vistaus/master
+    
+    Updated Dutch translation
+
+[33mcommit 6ae448768e6cb6999cce10708267fbce6b2c419a[m
+Author: Heimen Stoffels <vistausss@fastmail.com>
+Date:   Sat Jan 3 19:56:24 2026 +0100
+
+    Updated Dutch translation
+
+[33mcommit 92db00752bd8f8eba1eba2958e02fc85bb5f75ce[m
+Merge: a4bbcb4 e70ec3a
+Author: itayavra <itay.avra@gmail.com>
+Date:   Sat Jan 3 20:38:00 2026 +0200
+
+    Merge pull request #14 from Vistaus/master
+    
+    Added Dutch translation
+
+[33mcommit e70ec3a634cfe26091de50bb385764b297679849[m
+Author: Heimen Stoffels <vistausss@fastmail.com>
+Date:   Sat Jan 3 19:28:44 2026 +0100
+
+    Added Dutch translation
+
+[33mcommit a4bbcb4d4a50ef0820a713e65429df87253f5082[m
+Merge: 334c2e1 88065cd
+Author: itayavra <itay.avra@gmail.com>
+Date:   Sat Jan 3 18:59:48 2026 +0200
+
+    Merge pull request #13 from AzraelBunn/master
+    
+    Added polish translation
+
+[33mcommit 88065cded570060d199f4f9e37812eedf78766c0[m
+Author: AzzyBunn <36964375+AzraelBunn@users.noreply.github.com>
+Date:   Sat Jan 3 16:52:05 2026 +0100
+
+    Added polish translation
+
+[33mcommit 334c2e1e64b99a3859e70e3441f55a1dd7116483[m
+Merge: a1d6e4e f48f382
+Author: itayavra <itay.avra@gmail.com>
+Date:   Sat Jan 3 16:49:38 2026 +0200
+
+    Merge pull request #11 from smileyhead/master
+    
+    Add localisation support and Hungarian
+
+[33mcommit f48f382e855e4a390782a25f5497113d42f1b548[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 15:22:19 2026 +0100
+
+    Compile Hungarian translation
+
+[33mcommit 66ef34b65f4bf2f804dcff692b1051e8e5178080[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 15:19:18 2026 +0100
+
+    Update Hungarian translation
+
+[33mcommit 8b9d92cdb69ab5a2a7d5390a2f7b64c3f7e9d110[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 15:07:13 2026 +0100
+
+    Run 'merge.sh'
+
+[33mcommit b675e88a8bd34d6087e17ea4a6467b2f6ce5eaa8[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 15:07:02 2026 +0100
+
+    Add i18n comments to 'UPowerProvider.qml'
+
+[33mcommit ea93ef4db7d720b9f36d08e606b1fcad84cb0f9b[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 15:06:44 2026 +0100
+
+    Add i18n() wrappers to 'OpenLinkHubProvider.qml'
+
+[33mcommit c5df35a5358abb8a77c6af692e8b8ef1254b155f[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 15:01:38 2026 +0100
+
+    Add i18n comments to 'main.qml'
+
+[33mcommit 093a1791d7e2b2868db0bc721976b777628cb3da[m
+Merge: 3ca2160 a1d6e4e
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 14:17:38 2026 +0100
+
+    Merge remote-tracking branch 'refs/remotes/actual-master/master'
+    
+    # Conflicts:
+    #       contents/ui/main.qml
+
+[33mcommit 3ca216076034fda05df0a823d189ba908fa12f5b[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 14:10:46 2026 +0100
+
+    Update 'main.qml'
+
+[33mcommit 40cdfb3a490790291acd0c539d134f3d33121bff[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Sat Jan 3 13:17:02 2026 +0100
+
+    Change indents from four spaces to tabs
+
+[33mcommit a1d6e4e740641fa4e614e60b908b903b301c72be[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 14:06:49 2026 +0200
+
+    Enhance release workflow: fetch full git history, generate changelog, and create draft release. The changelog now includes commit messages since the last tag, and the release is marked as a draft for review before publishing.
+
+[33mcommit 5bcdb027b9ffceb620ded9b8555ba71f20f35010[m
+Merge: b68e227 fc92943
+Author: itayavra <itay.avra@gmail.com>
+Date:   Sat Jan 3 13:25:03 2026 +0200
+
+    Merge pull request #12 from AzraelBunn/master
+    
+    Fix disappearing devices
+
+[33mcommit fc9294324d958ab084dac855be2c878af7394a44[m
+Author: AzzyBunn <36964375+AzraelBunn@users.noreply.github.com>
+Date:   Sat Jan 3 03:01:07 2026 +0100
+
+    Fixed version number -.-
+
+[33mcommit 6ade609aba557911030ab5adcf480b4280898971[m
+Author: lisekilis <101191226+lisekilis@users.noreply.github.com>
+Date:   Sat Jan 3 02:48:16 2026 +0100
+
+    Fix disappearing devices
+    
+    Co-authored-by: AzzyBunn <36964375+AzraelBunn@users.noreply.github.com>
+
+[33mcommit b68e227c2014301350eeb587741181da190f7dce[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 00:53:04 2026 +0200
+
+    docs: Add development section to README.md with installation and management scripts
+
+[33mcommit 524829fa194207d6fb76313edeea99053d9f8c6f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 00:48:03 2026 +0200
+
+    fix license badge link in README.md
+
+[33mcommit 943f1cd804553f1c6f11629496098f764988ae25[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Fri Jan 2 23:40:09 2026 +0100
+
+    Copy 'hu.mo' to the appropriate folder
+
+[33mcommit 648e05a15be95a8872fc55eb013bd269ae6ad3d4[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 00:38:08 2026 +0200
+
+    docs: Add badges for latest release, KDE Plasma 6, license, and support to README.md
+
+[33mcommit 15bb5cabb029c034a0ed9d2137e7cfe95f529a37[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Fri Jan 2 23:32:34 2026 +0100
+
+    Run 'build.sh'
+
+[33mcommit 3496604c98a60c0207ea83fa7c385b3e4ed5540a[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Fri Jan 2 23:26:13 2026 +0100
+
+    Add Hungarian localization
+
+[33mcommit 582352c0a4fd734f313bdce5bc44eb73fa098494[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Fri Jan 2 23:11:30 2026 +0100
+
+    Fix notes in template.pot
+
+[33mcommit 0cf0220f569af7bec49e53231347cddab7658d3e[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 00:08:17 2026 +0200
+
+    chore: Update version to 0.1.9 in metadata.json
+
+[33mcommit 048e451a86e61cd7cae65cad02fb199b42958a51[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Jan 3 00:07:52 2026 +0200
+
+    refactor: better provider management in main.qml with a single source of truth for the providers list
+    lint changes
+
+[33mcommit 856162014ab46c0ff1bfccdec3f650368b1bada1[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Fri Jan 2 23:00:45 2026 +0100
+
+    Run merge.sh
+
+[33mcommit 1ed8a8a10fa2371c1f306e5dfc071f0c49410c97[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Fri Jan 2 23:00:32 2026 +0100
+
+    Add localization scripts
+
+[33mcommit 458cbd75a1318d109a8f99e6fa941749e1fe53e6[m
+Author: smileyhead <szijartoleventepal@gmail.com>
+Date:   Fri Jan 2 23:00:07 2026 +0100
+
+    Add i18n() wrappers
+
+[33mcommit fe2c54559d810d8d3fcdc1dd55e93258f21a96f8[m
+Merge: 43f72a5 b8964ae
+Author: itayavra <itay.avra@gmail.com>
+Date:   Fri Jan 2 23:40:20 2026 +0200
+
+    Merge pull request #10 from AzraelBunn/master
+    
+    OpenLinkHub Integration v.2
+
+[33mcommit b8964aed7667888079f92f38804b64b38f104c6b[m
+Author: AzzyBunn <36964375+AzraelBunn@users.noreply.github.com>
+Date:   Fri Jan 2 21:41:05 2026 +0100
+
+    OpenLinkHub Integration v.2
+
+[33mcommit 43f72a5e3da114a951b0501990233575fb59f7e5[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Jan 2 21:20:53 2026 +0200
+
+    chore: Update version to 0.1.8 and add UPower device type overrides for improved device recognition
+
+[33mcommit 079dfa630ec95499134df158a59dbbba0a8f6074[m
+Merge: bd1ce80 6c0f71d
+Author: itayavra <itay.avra@gmail.com>
+Date:   Fri Jan 2 19:36:33 2026 +0200
+
+    Merge pull request #9 from itayavra/add-companion-service-support
+    
+    Add companion service support
+
+[33mcommit 6c0f71df458b220d50d87edc200d80e555a7cba4[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Jan 2 19:35:22 2026 +0200
+
+    Update version
+
+[33mcommit 1ee9866ba2595d0029c896f3085073bc42b4e09b[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Jan 2 19:33:16 2026 +0200
+
+    refactor: integrate device parsing logic into UPowerProvider.qml and CompanionProvider.qml for improved maintainability, each provider in charge of it's own parsing
+
+[33mcommit 6bfb51be02719120b55a95a7e2e2cfe06090cf99[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Jan 2 19:11:10 2026 +0200
+
+    changed comment
+
+[33mcommit 0b4a33b37229c0c77e7676947d2ee0fa63ce13d2[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Jan 2 19:05:51 2026 +0200
+
+    feat: Update CompanionProvider to adjust polling frequency based on service availability and improve logging for service disconnection
+
+[33mcommit f28f56689f071fa246e52194094f105a936ccd8f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Jan 2 18:52:48 2026 +0200
+
+    reverted row design to original
+    in case of multiple battery values they will be displayed on a new row
+
+[33mcommit f6c01648d0f003da8f5943e94bf312aa84582169[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 21:32:37 2026 +0200
+
+    redid the UI a bit, fixed buttons accessibility and tooltips
+
+[33mcommit af86c5651e9407420940511c996bd1ea361139a4[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 20:58:10 2026 +0200
+
+    refactor: Simplify layout structure in main.qml for device representation and improve spacing for better visual clarity
+
+[33mcommit dc808c7e66895c990913a1a3252090a1c6d4d786[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 20:50:48 2026 +0200
+
+    feat: Enhance battery tray representation in main.qml and update CompanionProvider to control visibility of batteries in tray
+
+[33mcommit 33f3c79c210d1fc84e9c5c759754e6b35053cab6[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 19:36:58 2026 +0200
+
+    refactor: Remove CompanionProvider.js and UPowerProvider.js, integrate parsing logic directly into QML files for improved maintainability
+
+[33mcommit f16cd496b152d3fd723943aec442e3195274c624[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 19:32:15 2026 +0200
+
+    feat: Refactor device management in main.qml to merge devices from multiple providers to include devices from companion service
+
+[33mcommit bd1ce801503c46fac5ec9f090637221553615ee7[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 18:12:06 2026 +0200
+
+    fix: update tooltip to include version number in main.qml and update version
+
+[33mcommit 35ba2c435db375afcf23502180150e151eeeeded[m
+Merge: 85c5c30 ebc4f66
+Author: itayavra <itay.avra@gmail.com>
+Date:   Thu Jan 1 18:07:04 2026 +0200
+
+    Merge pull request #4 from itayavra/polling-performance
+    
+    feat: Implement two-tiered polling for UPower devices with frequent p…
+
+[33mcommit ebc4f663dd43edf7892dcd0a900018fde9616743[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 18:05:56 2026 +0200
+
+    style: Remove unnecessary comments
+
+[33mcommit a1dc3dd0f0c73fab15ff4fcd0bc5653109d9f0ec[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 18:03:51 2026 +0200
+
+    chore: update version number to 0.1.5 in metadata.json
+
+[33mcommit 90fbdf5cbcfa4cd71328115de3d80e53ed797ca8[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 18:03:14 2026 +0200
+
+    fix: filter out wired devices from device info display in main.qml
+
+[33mcommit 3b5b36462056a824ede653085fd574de0ad8e4b5[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 17:56:58 2026 +0200
+
+    chore: add development scripts to easily install dev environment
+
+[33mcommit 2231a5a894edc6cb7facf63d3417570c3377e658[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 17:53:22 2026 +0200
+
+    fixed typo
+
+[33mcommit 011d49fed68f8b0d4cd903c6906fa46da1ba3da9[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 17:47:59 2026 +0200
+
+    CR by claude
+
+[33mcommit c1737418e96e1f8ef036471f25174fbcfacc4a7f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 17:27:56 2026 +0200
+
+    clean redundant code
+
+[33mcommit 3be0c018a8d6b5c4d615385490cc3f2994ba6459[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Jan 1 17:05:22 2026 +0200
+
+    removed comments, rename function
+
+[33mcommit 3b54c7aa1f341a82c89c7396eff05fddda9d8c90[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 29 01:06:44 2025 +0200
+
+    refactor: move device parsing logic from QML component to JavaScript and inline connection type enum.
+
+[33mcommit c42fc3e27e01bb0d1ddfe0757d0ae485adca9b47[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 29 00:45:44 2025 +0200
+
+    feat: Implement two-tiered polling for UPower devices with frequent presence checks and infrequent battery level updates.
+
+[33mcommit 85c5c30af149cafa9259e9d4811278e49a4976d6[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Dec 2 01:00:23 2025 +0200
+
+    updated readme
+
+[33mcommit b911bad27cd8be61f735cefeed052ca18df2250d[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Dec 2 00:57:47 2025 +0200
+
+    fixed license name in readme
+
+[33mcommit 1cd50bb5bf9b90c399eb5231f98ea8ac6fcf34dc[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Dec 2 00:51:55 2025 +0200
+
+    added support section
+
+[33mcommit ee51a3c499c955a9af27b9c298e05ebb569015da[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 1 23:16:26 2025 +0200
+
+    updated readme
+
+[33mcommit 845bbe37a4416133b729d56671caf60a0b6203f5[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 1 23:16:05 2025 +0200
+
+    updated readme
+
+[33mcommit b0fffbed1c02c2c9fb42d45f4e65a05d92df7801[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 1 09:51:59 2025 +0200
+
+    updated readme
+
+[33mcommit 79229fcd072a8712c544fada91c9b4e7298e5744[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 1 01:18:04 2025 +0200
+
+    added newlines
+
+[33mcommit 640a3b070f61664486c198cf6966a27a60c4505e[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 1 01:03:42 2025 +0200
+
+    changed images to native markdown
+
+[33mcommit 516f55658d6830eaa551047a8edd9e14fb1f7ba5[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Dec 1 01:00:07 2025 +0200
+
+    added a readme page with screenshots
+
+[33mcommit 810e78f2015f40eae597109152a51f9ef8865b30[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sun Nov 30 21:40:07 2025 +0200
+
+    change version to 0.1.0 and added a github workflow
+
+[33mcommit 59d52116c8bc63de3d72718748c11c92bb6fde00[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sun Nov 30 21:32:00 2025 +0200
+
+    added gitignore and a build script for the plasmoid file
+
+[33mcommit f36d1649d4479fb7727de04ec73e7c469feaa388[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 29 14:31:58 2025 +0200
+
+    changed text
+
+[33mcommit 6f0911126a049d160bf72d52e9043d4d06b0f56b[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Fri Nov 28 16:50:35 2025 +0200
+
+    changed name
+
+[33mcommit 85a09953c1f1d1955bb2605446b3fdba8db7504b[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Thu Nov 27 01:23:39 2025 +0200
+
+    changed branding
+
+[33mcommit 8afda36faf9c1986da2e861857bae7049beac98f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Wed Nov 26 01:39:18 2025 +0200
+
+    updated metadata icon to correct one
+
+[33mcommit a79b49c4db865ebc063e0b789afd2841b172870e[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Wed Nov 26 01:16:14 2025 +0200
+
+    rename the images and updated metadata.json
+
+[33mcommit ee2649666891e8ce8638b5ea593f6b1eebf7138f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Wed Nov 26 01:11:16 2025 +0200
+
+    updated icons for main widget icon and hidden state
+
+[33mcommit 28506afa988f2cd5c53c09c6c296053b593b3454[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Nov 25 01:39:16 2025 +0200
+
+    changed icons
+
+[33mcommit 38cc990b4539648a04deb1e7db5692e5111142c1[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Nov 25 00:35:58 2025 +0200
+
+    removed comments
+
+[33mcommit 8e00e196713f4035c7f60bc4c82382393df86661[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Nov 25 00:34:46 2025 +0200
+
+    fixing metadata
+    hiding the widget when no devices are visible but showing it in the panel's edit mode to allow moving/removing it
+
+[33mcommit 038f03638309a2f1afa31e7c52c605579a037add[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Tue Nov 25 00:16:07 2025 +0200
+
+    hiding the widget when no devices are visible so it won't take up space in the tray
+
+[33mcommit e4b77c4d450764ba872bdbf21ff91f25b4f740c0[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 22:14:36 2025 +0200
+
+    simplified connection type detection
+
+[33mcommit 6a728bc3355985b90d11d8ae264d887bbde12dd4[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 22:09:18 2025 +0200
+
+    refactored the device parser to be more reliable
+
+[33mcommit c24ce5711e284055d33043ae7da48c89272021a9[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 01:16:00 2025 +0200
+
+    adjusted dimensions
+
+[33mcommit 3d2bf52bad5e081bdc4b274f5cbd4f77df17a68f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 01:09:42 2025 +0200
+
+    refactor: Rename `otherWireless` connection type to `wireless` and remove various comments.
+
+[33mcommit dd43c867d9836fc49b3da3178b4d5a9b6adc4e3f[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 00:50:18 2025 +0200
+
+    refactor: Rename `bluetoothDevices` to `connectedDevices` and update related UI text for broader device support.
+
+[33mcommit f319a629efc5da67d686e6b07883dbd7b0cf13be[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 00:45:29 2025 +0200
+
+    refactored the code and split to files
+
+[33mcommit df2e08958ece30826d85a06de99f7fa1c4bb5fa2[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 00:35:30 2025 +0200
+
+    feat: Replace `isWireless` boolean with `connectionType` enum for granular device classification and UI control.
+
+[33mcommit 23316291e10fe42234e273acb8726a901bca078b[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Mon Nov 24 00:22:34 2025 +0200
+
+    layout looks ok with scroll
+
+[33mcommit e332539f08ad0404a3c0d4cf1574a45450d6b80a[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sun Nov 23 23:46:38 2025 +0200
+
+    reverted back to before the scrollable area
+    moved the refresh button up
+
+[33mcommit 9e6b50187c28c17cf1facdf436aad8175f4f4ee9[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sun Nov 23 19:36:52 2025 +0200
+
+    better layouting
+
+[33mcommit 276acb49d2d6a001276075b65ea5e7b56c272445[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sun Nov 23 19:31:02 2025 +0200
+
+    temp changes
+
+[33mcommit c9928504ac2aacc8e36d92907fa8916780549f54[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sun Nov 23 01:28:14 2025 +0200
+
+    added xbox controller support when connected with the xbox dongle
+
+[33mcommit 7162cab6dadff03a2998aa31c741169b875fe596[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 22 21:02:12 2025 +0200
+
+    removed progress bar and fixed gaps and button hover indications
+
+[33mcommit 72bad2e5fb46b676d564c2f35f45ee22b76351ae[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 22 20:48:46 2025 +0200
+
+    changed layout to flexboxes
+
+[33mcommit b575c0723c04ecedcf0ba7110c9e7f4e6a4cd8cd[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 22 19:48:02 2025 +0200
+
+    more consistent spacing
+
+[33mcommit 42262e98b51d2f6fb42d9c1bf2b96fbf2a5d3d8e[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 22 19:12:35 2025 +0200
+
+    better alignment of buttons on hover
+
+[33mcommit bc5488ae8fdc335ed17dde37470cb90465de7384[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 22 19:03:04 2025 +0200
+
+    fixed the icons to be visible
+
+[33mcommit 5315aff3dab57c209dd820313d6d929fba0393fb[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 22 18:58:43 2025 +0200
+
+    showing the buttons on hover
+
+[33mcommit 9a781cacbfa6261123ad4cdb3da969cd35b2cc5d[m
+Author: Itay Avraham <itay.avra@gmail.com>
+Date:   Sat Nov 22 18:40:03 2025 +0200
+
+    Initial commit: Bluetooth Battery Monitor widget
+
+[33mcommit 85ec94bf15125394e4053f88caae10443aa5cb87[m
+Author: itayavra <itaya@wix.com>
+Date:   Sat Nov 22 18:35:30 2025 +0200
+
+    Initial commit

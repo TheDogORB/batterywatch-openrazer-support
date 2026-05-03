@@ -8,31 +8,36 @@ Item {
     id: root
     visible: false
     // Controls how often device info gets fetched
-    readonly property int refreshInterval: 60000
+    readonly property int refreshInterval: 60000 // 1 min used when everything works
+    readonly property int retryInterval: 300000 // 5 mins used when task fails
+    readonly property int waitForDeviceInterval: 30000 // 30s used when waiting for device
 
     property var devices: []
+    property bool available: true
 
     // Path to helper script
-    readonly property string helperScript: Qt.resolvedUrl("razer_info.py").toString().replace("file://", "")
+    readonly property string helperScript: Qt.resolvedUrl("openrazer_info.py").toString().replace("file://", "")
 
     function refresh() {
+        root.available = true
         dataSource.connectSource("python3 " + helperScript)
     }
 
     // Parse .JSON output from the helper script to device variable
-    function parseRazerOutput(stdout) {
+    function parseOpenRazerOutput(stdout) {
         var parsed
 
         try {
             parsed = JSON.parse(stdout)
         } catch (e) {
-            console.warn("RazerProvider: failed to parse JSON:", e, stdout)
+            console.warn("OpenRazerProvider: failed to parse JSON:", e, stdout)
             return []
         }
 
         if (!Array.isArray(parsed)) {
             if (parsed.error) {
-                console.warn("RazerProvider:", parsed.error)
+                console.warn("OpenRazerProvider:", parsed.error)
+                root.available = false
             }
             return []
         }
@@ -81,7 +86,7 @@ Item {
         onNewData: (sourceName, data) => {
             disconnectSource(sourceName)
 
-            var incoming = parseRazerOutput(data["stdout"])
+            var incoming = parseOpenRazerOutput(data["stdout"])
 
             var merged = root.devices.slice() // Update existing entries by serial and adds new ones
 
@@ -113,10 +118,18 @@ Item {
         Component.onCompleted: root.refresh()
     }
 
-    // Polls device info every refreshInterval seconds (60 by default) for battery state changes
+    // Polls device info every 30/60 seconds
     Timer {
-        interval: refreshInterval
-        running: true
+        interval: root.devices.length == 0 && root.available ? waitForDeviceInterval : refreshInterval
+        running: root.available
+        repeat: true
+        onTriggered: root.refresh()
+    }
+
+    // Retry timer
+    Timer {
+        interval: retryInterval
+        running: !root.available
         repeat: true
         onTriggered: root.refresh()
     }
