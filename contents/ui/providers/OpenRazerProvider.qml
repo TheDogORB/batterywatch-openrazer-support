@@ -66,7 +66,7 @@ Item {
                 continue
 
             result.push({
-                name: d.name || "Unknown Razer Device",
+                name: d.name || i18n("Unknown Razer Device"),
                 serial: id,
                 percentage: d.battery,
                 type: d.type || "unknown",
