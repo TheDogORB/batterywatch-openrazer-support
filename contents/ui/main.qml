@@ -26,8 +26,12 @@ PlasmoidItem {
 		id: openLinkHubProvider
 	}
 
+	OpenRazerProvider {
+		id: openRazerProvider
+	}
+
 	// List of providers (in priority order)
-	property var providers: [upowerProvider, companionProvider, openLinkHubProvider]
+	property var providers: [upowerProvider, companionProvider, openLinkHubProvider, openRazerProvider]
 
 	// ═══════════════════════════════════════════════════════════════════════
 	// DEVICE STATE
