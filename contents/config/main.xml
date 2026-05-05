@@ -9,11 +9,24 @@
     <entry name="hiddenDevices" type="String">
       <default></default>
     </entry>
-    <entry name="enableOpenLinkHubIntegration" type="bool">
-      <default>true</default>
+  </group>
+
+  <group name="Appearance">
+    <entry name="fontFamily" type="String">
+      <label>Widget font family</label>
+      <default></default>
     </entry>
-    <entry name="openLinkHubApiPort" type="Int">
-      <default>27003</default>
+    <entry name="fontBold" type="Bool">
+      <label>Shall font be bold?</label>
+      <default>false</default>
+    </entry>
+    <entry name="fontWeight" type="Int">
+      <label>Thickness of bold</label>
+      <default>500</default>
+    </entry>
+    <entry name="fontItalic" type="Bool">
+      <label>Shall font be itallic?</label>
+      <default>false</default>
     </entry>
     <entry name="useCustomFontSize" type="bool">
       <default>false</default>
@@ -26,6 +39,15 @@
     </entry>
     <entry name="customIconSize" type="Int">
       <default>22</default>
+    </entry>
+  </group>
+
+  <group name="OpenLinkHub">
+    <entry name="enableOpenLinkHubIntegration" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="openLinkHubApiPort" type="Int">
+      <default>27003</default>
     </entry>
   </group>
 </kcfg>

@@ -1,2 +1,7 @@
 # Build output
 dist/
+
+# User/Local config
+*.user
+*.ini
+*.local
