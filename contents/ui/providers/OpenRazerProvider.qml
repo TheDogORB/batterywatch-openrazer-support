@@ -15,8 +15,8 @@ Item {
     // Helper getDevices var
     readonly property string getDeviceListCmd: "qdbus org.razer /org/razer razer.devices.getDevices"
 
-    // Can't test this as I don't have means to connect mouse to PC via Bluetooth 
-    // but based on what I found on the openrazer github, Bluetooth is currently 
+    // Can't test this as I don't have means to connect mouse to PC via Bluetooth
+    // but based on what I found on the openrazer github, Bluetooth is currently
     // unsupported, and devices connected via this mean are handled by kernel/OS
     // https://github.com/openrazer/openrazer/issues?q=state%3Aopen%20label%3ABluetooth
 
@@ -29,30 +29,30 @@ Item {
     property var deviceData: ({})
     property var knownDevices: ({})
 
-	// ═══════════════════════════════════════════════════════════════════════
-	// GUI RELATED FUNCTIONS
-	// ═══════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
+    // GUI RELATED FUNCTIONS
+    // ═══════════════════════════════════════════════════════════════════════
 
     // Refresh via "refresh" button in the GUI
     function refresh() {
-        listSource.disconnectSource(getDeviceListCmd)
-        listSource.connectSource(getDeviceListCmd)
+        listSource.disconnectSource(getDeviceListCmd);
+        listSource.connectSource(getDeviceListCmd);
 
         for (var id in deviceData) {
-            fetchBattery(id)
+            fetchPowerInfo(id);
         }
     }
 
-	// ═══════════════════════════════════════════════════════════════════════
-	// HELPER FUNCTIONS
-	// ═══════════════════════════════════════════════════════════════════════
-	
+    // ═══════════════════════════════════════════════════════════════════════
+    // HELPER FUNCTIONS
+    // ═══════════════════════════════════════════════════════════════════════
+
     // Updates the device model from the current internal state
     function updateOpenRazerDevices() {
-        var result = []
+        var result = [];
 
         for (var id in deviceData) {
-            var d = deviceData[id]
+            var d = deviceData[id];
 
             // Filter out devices w/o a battery or disconnected devices
             //
@@ -63,8 +63,7 @@ Item {
             // openrazer can report battery being 100% charged up to 30s after
             // connecting a device
             if (typeof d.battery !== "number" || d.battery <= 0)
-                continue
-
+                continue;
             result.push({
                 name: d.name || i18n("Unknown Razer Device"),
                 serial: id,
@@ -73,35 +72,31 @@ Item {
                 icon: DeviceUtils.getIconForType(d.type || "unknown"),
                 connectionType: wirelessType,
                 source: "openrazer",
-                batteries: []
-            })
+                batteries: [],
+                charging: d.charging === true
+            });
         }
 
-        // Sorts devices alphabetically 
-        result.sort((a, b) => (a.name || "").localeCompare(b.name || ""))
-        devices = result
+        // Sorts devices alphabetically
+        result.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+        devices = result;
     }
 
     function fetchNameAndType(id) {
-        detailsSource.connectSource(
-            `qdbus org.razer /org/razer/device/${id} razer.device.misc.getDeviceName`
-        )
-        detailsSource.connectSource(
-            `qdbus org.razer /org/razer/device/${id} razer.device.misc.getDeviceType`
-        )
+        detailsSource.connectSource(`qdbus org.razer /org/razer/device/${id} razer.device.misc.getDeviceName`);
+        detailsSource.connectSource(`qdbus org.razer /org/razer/device/${id} razer.device.misc.getDeviceType`);
     }
 
-    function fetchBattery(id) {
+    function fetchPowerInfo(id) {
         if (!deviceData[id])
-            return
-        batterySource.connectSource(
-            `qdbus org.razer /org/razer/device/${id} razer.device.power.getBattery`
-        )
+            return;
+        batterySource.connectSource(`qdbus org.razer /org/razer/device/${id} razer.device.power.getBattery`);
+        chargingSource.connectSource(`qdbus org.razer /org/razer/device/${id} razer.device.power.isCharging`);
     }
 
-	// ═══════════════════════════════════════════════════════════════════════
-	// DEVICE DISCOVERY
-	// ═══════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
+    // DEVICE DISCOVERY
+    // ═══════════════════════════════════════════════════════════════════════
 
     // openrazer lacks device added/removed signal -> instead devices are polled
     // periodically razer.devices.getDevices function
@@ -113,88 +108,109 @@ Item {
         interval: 0
 
         onNewData: (src, data) => {
-            disconnectSource(src)
+            disconnectSource(src);
 
-            var ids = data.stdout
-                .split("\n")
-                .map(s => s.trim())
-                .filter(Boolean)
+            var ids = data.stdout.split("\n").map(s => s.trim()).filter(Boolean);
 
-            var current = {}
+            var current = {};
 
             ids.forEach(id => {
-                current[id] = true
+                current[id] = true;
 
                 if (!knownDevices[id]) {
                     deviceData[id] = {
                         name: "",
                         type: "",
-                        battery: undefined
-                    }
+                        battery: undefined,
+                        charging: false
+                    };
 
-                    fetchNameAndType(id)
-                    fetchBattery(id)
+                    fetchNameAndType(id);
+                    fetchPowerInfo(id);
                 }
-            })
+            });
 
             // Remove unresponsive/stale devices
             for (var id in knownDevices) {
                 if (!current[id]) {
-                    delete deviceData[id]
+                    delete deviceData[id];
                 }
             }
 
-            knownDevices = current
-            updateOpenRazerDevices()
+            knownDevices = current;
+            updateOpenRazerDevices();
         }
 
         Component.onCompleted: connectSource(getDeviceListCmd)
     }
 
-	// ═══════════════════════════════════════════════════════════════════════
-	// BATTERY HANDLING
-	// ═══════════════════════════════════════════════════════════════════════
-	
+    // ═══════════════════════════════════════════════════════════════════════
+    // BATTERY HANDLING
+    // ═══════════════════════════════════════════════════════════════════════
+
     // Updates percentage (battery charge) values via razer.device.power.getBattery
     // if the func exists for a device -> func doesn't exist for wired devices
-    // if 0 = device with battery with no connection 
+    // if 0 = device with battery with no connection
     P5Support.DataSource {
         id: batterySource
         engine: "executable"
         interval: 0
 
         onNewData: (src, data) => {
-            disconnectSource(src)
+            disconnectSource(src);
 
             if (!src.includes("/device/"))
-                return
-
-            var id = src.split("/device/")[1].split(" ")[0]
+                return;
+            var id = src.split("/device/")[1].split(" ")[0];
             if (!deviceData[id])
-                return
+                return;
 
             // Non-battery device
             if (data.stderr && data.stderr.includes("UnknownMethod")) {
-                delete deviceData[id]
-                updateOpenRazerDevices()
-                return
+                delete deviceData[id];
+                updateOpenRazerDevices();
+                return;
             }
 
             // 0 is handled in updateOpenRazerDevices()
-            var raw = parseFloat(data.stdout)
+            var raw = parseFloat(data.stdout);
             if (isNaN(raw))
-                return
+                return;
+            deviceData[id].battery = Math.round(Math.max(0, Math.min(100, raw)));
 
-            deviceData[id].battery =
-                Math.round(Math.max(0, Math.min(100, raw)))
-
-            updateOpenRazerDevices()
+            updateOpenRazerDevices();
         }
     }
 
-	// ═══════════════════════════════════════════════════════════════════════
-	// META DATA
-	// ═══════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
+    // CHARGING HANDLING
+    // ═══════════════════════════════════════════════════════════════════════
+
+    P5Support.DataSource {
+        id: chargingSource
+        engine: "executable"
+        interval: 0
+
+        onNewData: (src, data) => {
+            disconnectSource(src);
+
+            if (!src.includes("/device/"))
+                return;
+            var id = src.split("/device/")[1].split(" ")[0];
+            if (!deviceData[id])
+                return;
+
+            if (data.stderr && data.stderr.length > 0)
+                return;
+            deviceData[id].charging = data.stdout.trim() === "true";
+
+            updateOpenRazerDevices();
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // META DATA
+    // ═══════════════════════════════════════════════════════════════════════
 
     P5Support.DataSource {
         id: detailsSource
@@ -202,28 +218,26 @@ Item {
         interval: 0
 
         onNewData: (src, data) => {
-            disconnectSource(src)
+            disconnectSource(src);
 
             if (!src.includes("/device/"))
-                return
-
-            var id = src.split("/device/")[1].split(" ")[0]
+                return;
+            var id = src.split("/device/")[1].split(" ")[0];
             if (!deviceData[id])
-                return
-
+                return;
             if (src.endsWith("getDeviceName")) {
-                deviceData[id].name = data.stdout.trim()
+                deviceData[id].name = data.stdout.trim();
             } else if (src.endsWith("getDeviceType")) {
-                deviceData[id].type = data.stdout.trim()
+                deviceData[id].type = data.stdout.trim();
             }
 
-            updateOpenRazerDevices()
+            updateOpenRazerDevices();
         }
     }
 
-	// ═══════════════════════════════════════════════════════════════════════
-	// TIMERS
-	// ═══════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
+    // TIMERS
+    // ═══════════════════════════════════════════════════════════════════════
 
     // Periodic 'device discovery' scan + battery refresh
     Timer {
@@ -231,7 +245,7 @@ Item {
         running: true
         repeat: true
         onTriggered: {
-            refresh()
+            refresh();
         }
     }
 }
