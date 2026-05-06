@@ -10,8 +10,6 @@ Item {
     id: root
     visible: false
 
-    readonly property int deviceScanInterval: 5000          // How often getDevices is called
-
     // Helper getDevices var
     readonly property string getDeviceListCmd: "qdbus org.razer /org/razer razer.devices.getDevices"
 
@@ -186,6 +184,7 @@ Item {
     // CHARGING HANDLING
     // ═══════════════════════════════════════════════════════════════════════
 
+    // Updates isCharging to true/false via razer.device.power.isCharging
     P5Support.DataSource {
         id: chargingSource
         engine: "executable"
@@ -241,7 +240,7 @@ Item {
 
     // Periodic 'device discovery' scan + battery refresh
     Timer {
-        interval: deviceScanInterval
+        interval: 5000
         running: true
         repeat: true
         onTriggered: {

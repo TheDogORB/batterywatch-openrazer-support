@@ -9,13 +9,17 @@
     <entry name="hiddenDevices" type="String">
       <default></default>
     </entry>
+    <entry name="debugMode" type="Bool">
+      <default>false</default>
+    </entry>
   </group>
-
+  <!-- Appearance section -->
   <group name="Appearance">
     <entry name="fontFamily" type="String">
       <label>Widget font family</label>
       <default></default>
     </entry>
+
     <entry name="fontBold" type="Bool">
       <label>Shall font be bold?</label>
       <default>false</default>
@@ -24,30 +28,84 @@
       <label>Thickness of bold</label>
       <default>500</default>
     </entry>
+
     <entry name="fontItalic" type="Bool">
-      <label>Shall font be itallic?</label>
+      <label>Shall font be italic?</label>
       <default>false</default>
     </entry>
-    <entry name="useCustomFontSize" type="bool">
-      <default>false</default>
-    </entry>
-    <entry name="useCustomIconSize" type="bool">
+
+    <entry name="useCustomFontSize" type="Bool">
       <default>false</default>
     </entry>
     <entry name="customFontSize" type="Int">
       <default>12</default>
     </entry>
+
+    <entry name="useCustomIconSize" type="Bool">
+      <default>false</default>
+    </entry>
     <entry name="customIconSize" type="Int">
       <default>22</default>
+    </entry>
+    <!-- COLORS -->
+    <entry name="useDefaultColor" type="Bool">
+      <label>Enable custom battery colors</label>
+      <default>false</default>
+    </entry>
+    <entry name="defaultCustomColor" type="Color">
+      <label>Changes default colour of battery</label>
+      <default>#FFFFFF</default>
+    </entry>
+
+    <entry name="useChargingColor" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="chargingColor" type="Color">
+      <default>#4CAF50</default>
+    </entry>
+
+    <entry name="zoneOneColor" type="Color">
+      <label>Changes colour of battery when below threshold of zone one</label>
+      <default>#DFC04C</default>
+    </entry>
+    <entry name="useZoneOneColor" type="Bool">
+      <label>Toggle to allow use of zone one</label>
+      <default>false</default>
+    </entry>
+    <entry name="zoneOneThreshold" type="Int">
+      <label>Sets threshold for zone one, when below change colour</label>
+      <default>40</default>
+    </entry>
+
+    <entry name="useZoneTwoColor" type="Bool">
+      <label>Toggle to allow use of zone two</label>
+      <default>false</default>
+    </entry>
+    <entry name="zoneTwoColor" type="Color">
+      <label>Changes colour of battery when below threshold of zone two</label>
+      <default>#EE665A</default>
+    </entry>
+    <entry name="zoneTwoThreshold" type="Int">
+      <label>Sets threshold for zone two, when below change colour</label>
+      <default>20</default>
     </entry>
   </group>
 
   <group name="OpenLinkHub">
-    <entry name="enableOpenLinkHubIntegration" type="bool">
+    <entry name="enableOpenLinkHubIntegration" type="Bool">
       <default>true</default>
     </entry>
     <entry name="openLinkHubApiPort" type="Int">
       <default>27003</default>
+    </entry>
+  </group>
+
+  <group name="OpenRazer">
+    <entry name="useOpenRazerIntegration" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="openRazerPollingTime" type="Int">
+      <default>5</default>
     </entry>
   </group>
 </kcfg>

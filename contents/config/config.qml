@@ -8,8 +8,8 @@ ConfigModel {
         source: "config/Appearance.qml"
     }
     ConfigCategory {
-        name: i18n("OpenLinkHub Integration")
+        name: i18n("Provider modules")
         icon: "network-connect"
-        source: "config/OpenLinkHub.qml"
+        source: "config/Modules.qml"
     }
 }
