@@ -19,7 +19,7 @@ KCMUtils.SimpleKCM {
     property alias cfg_customIconSize: customIconSize.value
     // Color
     property alias cfg_useCustomDefaultColor: useCustomDefaultColor.checked
-    property alias cfg_defaultCustomColor: defaultCustomColor.color
+    property alias cfg_customDefaultColor: customDefaultColor.color
 
     property alias cfg_useChargingColor: useChargingColor.checked
     property alias cfg_chargingColor: chargingColor.color
@@ -226,7 +226,7 @@ KCMUtils.SimpleKCM {
             }
 
             KQC.ColorButton {
-                id: defaultCustomColor
+                id: customDefaultColor
                 enabled: useCustomDefaultColor.checked
                 showAlphaChannel: true
             }

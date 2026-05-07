@@ -53,7 +53,7 @@
       <label>Enable custom battery colors</label>
       <default>false</default>
     </entry>
-    <entry name="defaultCustomColor" type="Color">
+    <entry name="customDefaultColor" type="Color">
       <label>Changes default color of battery</label>
       <default>#FFFFFF</default>
     </entry>

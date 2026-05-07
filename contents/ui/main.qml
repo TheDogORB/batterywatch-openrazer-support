@@ -205,7 +205,7 @@ PlasmoidItem {
             return Plasmoid.configuration.zoneOneColor;
 
         // Default
-        return Plasmoid.configuration.useCustomDefaultColor ? Plasmoid.configuration.defaultCustomColor : Kirigami.Theme.textColor;
+        return Plasmoid.configuration.useCustomDefaultColor ? Plasmoid.configuration.customDefaultColor : Kirigami.Theme.textColor;
     }
 
     // ═══════════════════════════════════════════════════════════════════════
