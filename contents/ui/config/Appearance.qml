@@ -314,7 +314,7 @@ KCMUtils.SimpleKCM {
             }
 
             QQC2.Label {
-                opacity: useZoneTwoColor.checked ? 0.8 : 0.5
+                opacity: useZoneOneColor.checked ? 0.8 : 0.5
                 text: i18n("%")
             }
 
@@ -345,7 +345,7 @@ KCMUtils.SimpleKCM {
             }
 
             QQC2.Label {
-                opacity: useZoneOneColor.checked ? 0.8 : 0.5
+                opacity: useZoneTwoColor.checked ? 0.8 : 0.5
                 text: i18n("≤")
                 font.pixelSize: Kirigami.Theme.defaultFont.pixelSize * 1.4
                 font.weight: Font.Medium
