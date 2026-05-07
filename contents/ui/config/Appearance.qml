@@ -18,7 +18,7 @@ KCMUtils.SimpleKCM {
     property alias cfg_useCustomIconSize: useCustomIconSize.checked
     property alias cfg_customIconSize: customIconSize.value
     // Color
-    property alias cfg_useDefaultColor: useDefaultColor.checked
+    property alias cfg_useCustomDefaultColor: useCustomDefaultColor.checked
     property alias cfg_defaultCustomColor: defaultCustomColor.color
 
     property alias cfg_useChargingColor: useChargingColor.checked
@@ -222,12 +222,12 @@ KCMUtils.SimpleKCM {
             Kirigami.FormData.label: i18n("Default")
 
             QQC2.CheckBox {
-                id: useDefaultColor
+                id: useCustomDefaultColor
             }
 
             KQC.ColorButton {
                 id: defaultCustomColor
-                enabled: useDefaultColor.checked
+                enabled: useCustomDefaultColor.checked
                 showAlphaChannel: true
             }
 
