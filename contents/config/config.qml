@@ -12,4 +12,9 @@ ConfigModel {
         icon: "network-connect"
         source: "config/Modules.qml"
     }
+    ConfigCategory {
+        name: i18n("Advanced settings")
+        icon: "settings-configure"
+        source: "config/AdvancedSettings.qml"
+    }
 }

@@ -13,6 +13,7 @@
       <default>false</default>
     </entry>
   </group>
+
   <!-- Appearance section -->
   <group name="Appearance">
     <entry name="fontFamily" type="String">
@@ -53,7 +54,7 @@
       <default>false</default>
     </entry>
     <entry name="defaultCustomColor" type="Color">
-      <label>Changes default colour of battery</label>
+      <label>Changes default color of battery</label>
       <default>#FFFFFF</default>
     </entry>
 
@@ -61,11 +62,11 @@
       <default>true</default>
     </entry>
     <entry name="chargingColor" type="Color">
-      <default>#4CAF50</default>
+      <default>#2196F3</default>
     </entry>
 
     <entry name="zoneOneColor" type="Color">
-      <label>Changes colour of battery when below threshold of zone one</label>
+      <label>Changes color of battery when below threshold of zone one</label>
       <default>#DFC04C</default>
     </entry>
     <entry name="useZoneOneColor" type="Bool">
@@ -73,7 +74,7 @@
       <default>false</default>
     </entry>
     <entry name="zoneOneThreshold" type="Int">
-      <label>Sets threshold for zone one, when below change colour</label>
+      <label>Sets threshold for zone one, when below change color</label>
       <default>40</default>
     </entry>
 
@@ -82,15 +83,16 @@
       <default>false</default>
     </entry>
     <entry name="zoneTwoColor" type="Color">
-      <label>Changes colour of battery when below threshold of zone two</label>
+      <label>Changes color of battery when below threshold of zone two</label>
       <default>#EE665A</default>
     </entry>
     <entry name="zoneTwoThreshold" type="Int">
-      <label>Sets threshold for zone two, when below change colour</label>
+      <label>Sets threshold for zone two, when below change color</label>
       <default>20</default>
     </entry>
   </group>
 
+  <!-- PROVIDERS -->
   <group name="OpenLinkHub">
     <entry name="enableOpenLinkHubIntegration" type="Bool">
       <default>true</default>

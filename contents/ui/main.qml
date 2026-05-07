@@ -38,21 +38,6 @@ PlasmoidItem {
     property var allDevices: debugMode ? testDevices : realDevices
 
     // ═══════════════════════════════════════════════════════════════════════
-    // CONTEXT MENU
-    // ═══════════════════════════════════════════════════════════════════════
-
-    Plasmoid.contextualActions: [
-        PlasmaCore.Action {
-            text: root.debugMode ? i18n("Disable debug mode") : i18n("Enable debug mode")
-            icon.name: root.debugMode ? "dialog-warning" : "tools"
-
-            onTriggered: {
-                Plasmoid.configuration.debugMode = !Plasmoid.configuration.debugMode;
-            }
-        }
-    ]
-
-    // ═══════════════════════════════════════════════════════════════════════
     // DEVICE STATE
     // ═══════════════════════════════════════════════════════════════════════
 
@@ -206,6 +191,7 @@ PlasmoidItem {
     }
 
     function batteryColor(percentage, charging) {
+        // Charging
         if (Plasmoid.configuration.useChargingColor && charging) {
             return Plasmoid.configuration.chargingColor;
         }
@@ -241,6 +227,17 @@ PlasmoidItem {
 
     function saveHiddenDevices() {
         Plasmoid.configuration.hiddenDevices = hiddenDevices.join(i18n(", "));
+    }
+
+    function toggleDeviceVisibility(serial) {
+        var index = hiddenDevices.indexOf(serial);
+        if (index === -1) {
+            hiddenDevices.push(serial);
+        } else {
+            hiddenDevices.splice(index, 1);
+        }
+        hiddenDevices = hiddenDevices.slice();
+        saveHiddenDevices();
     }
 
     // ═══════════════════════════════════════════════════════════════════════

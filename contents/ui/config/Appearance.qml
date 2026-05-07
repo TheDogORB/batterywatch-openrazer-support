@@ -215,7 +215,7 @@ KCMUtils.SimpleKCM {
 
         Item {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Battery text colour")
+            Kirigami.FormData.label: i18n("Battery text ")
         }
 
         QQL.RowLayout {
@@ -255,7 +255,7 @@ KCMUtils.SimpleKCM {
 
             QQC2.ToolTip {
                 visible: mouseColors.containsMouse
-                text: i18n("Configure colors for normal and charging states. If default is turned off, system colour is used instead.")
+                text: i18n("Configure colors for normal and charging states. If default is turned off, system  is used instead.")
             }
         }
 
