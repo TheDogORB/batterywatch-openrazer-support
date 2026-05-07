@@ -43,8 +43,6 @@ KCMUtils.SimpleKCM {
         // Shared width for all Spinboxes and Gridboxes
         readonly property int boxWidth: Kirigami.Units.gridUnit * 3
         readonly property int boxHeight: Kirigami.Units.gridUnit * 1.5
-        // Used for bttn alignment
-        readonly property int controlWidth: Kirigami.Units.gridUnit * 6
 
         // Fetches fonts
         ListModel {
@@ -72,14 +70,16 @@ KCMUtils.SimpleKCM {
             }
         }
 
-        Item {
+        Kirigami.Separator {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Tray Font Settings")
+            Kirigami.FormData.label: i18n("Tray Text Settings")
+            QQL.Layout.fillWidth: true
         }
 
         QQL.RowLayout {
             QQL.Layout.fillWidth: true
             Kirigami.FormData.label: i18n("Font family:")
+            QQL.Layout.preferredWidth: styleRowLayout.implicitWidth
 
             QQC2.ComboBox {
                 id: fontFamily
@@ -88,134 +88,139 @@ KCMUtils.SimpleKCM {
                 valueRole: "value"
                 currentValue: page.cfg_fontFamily
 
-                QQL.Layout.preferredWidth: page.boxWidth * 6
+                QQL.Layout.fillWidth: true
 
                 // Does not autosync -> updat explicitly on change
                 onCurrentValueChanged: {
                     page.cfg_fontFamily = currentValue;
                 }
             }
-        }
 
-        QQL.RowLayout {
-            Kirigami.FormData.label: i18n("Style")
-            QQL.Layout.fillWidth: true
+            QQC2.ToolButton {
+                id: fontFamilyHelp
+                icon.name: "help-about"
 
-            // Explicit grid to keep elements properly aligned
-            // | checkbox | spinbox | -- | spacer | checkbox | italic | -- |
-            // | checkbox | spinbox | px | spacer | checkbox | spacer | px |
-
-            readonly property int controlWidth: Kirigami.Units.gridUnit * 6
-            readonly property int spinWidth: Kirigami.Units.gridUnit * 4
-            QQL.GridLayout {
-                columns: 7
-                columnSpacing: Kirigami.Units.smallSpacing
-                rowSpacing: Kirigami.Units.smallSpacing
-
-                QQC2.CheckBox {
-                    id: boldCheckBox
-                    text: i18n("Bold")
-                    QQL.Layout.column: 0
-                    QQL.Layout.row: 0
-                }
-
-                QQC2.SpinBox {
-                    // CSS / Qt scale: 100 - 1000
-                    id: fontWeight
-                    enabled: boldCheckBox.checked
-                    from: 100
-                    to: 1000
-                    stepSize: 100
-                    QQL.Layout.column: 1
-                    QQL.Layout.row: 0
-                    QQL.Layout.preferredWidth: page.boxWidth
-                }
-
-                Item {
-                    QQL.Layout.column: 2
-                    QQL.Layout.row: 0
-                }
-
-                Item {
-                    QQL.Layout.column: 3
-                    QQL.Layout.row: 0
-                    // Visual spacing in between elements
-                    width: 5
-                }
-
-                QQC2.CheckBox {
-                    id: italicCheckBox
-                    text: i18n("Italic")
-                    QQL.Layout.column: 4
-                    QQL.Layout.row: 0
-                }
-
-                Item {
-                    QQL.Layout.column: 5
-                    QQL.Layout.row: 0
-                }
-
-                QQC2.CheckBox {
-                    id: useCustomFontSize
-                    text: i18n("Font size")
-                    QQL.Layout.column: 0
-                    QQL.Layout.row: 1
-                }
-
-                QQC2.SpinBox {
-                    id: customFontSize
-                    enabled: useCustomFontSize.checked
-                    from: 4
-                    to: 72
-                    QQL.Layout.column: 1
-                    QQL.Layout.row: 1
-                    QQL.Layout.preferredWidth: page.boxWidth
-                }
-
-                QQC2.Label {
-                    text: i18n("px")
-                    opacity: useCustomFontSize.checked ? 0.8 : 0.5
-                    verticalAlignment: Text.AlignVCenter
-                    QQL.Layout.column: 2
-                    QQL.Layout.row: 1
-                }
-
-                Item {
-                    QQL.Layout.column: 3
-                    QQL.Layout.row: 1
-                    width: 5
-                }
-
-                QQC2.CheckBox {
-                    id: useCustomIconSize
-                    text: i18n("Icon size")
-                    QQL.Layout.column: 4
-                    QQL.Layout.row: 1
-                }
-
-                QQC2.SpinBox {
-                    id: customIconSize
-                    enabled: useCustomIconSize.checked
-                    from: 8
-                    to: 128
-                    QQL.Layout.column: 5
-                    QQL.Layout.row: 1
-                    QQL.Layout.preferredWidth: page.boxWidth
-                }
-
-                QQC2.Label {
-                    text: i18n("px")
-                    opacity: useCustomFontSize.checked ? 0.8 : 0.5
-                    verticalAlignment: Text.AlignVCenter
-                    QQL.Layout.column: 6
-                    QQL.Layout.row: 1
+                QQC2.ToolTip {
+                    visible: fontFamilyHelp.hovered
+                    text: i18n("Change the font family used for system tray text.")
                 }
             }
         }
 
-        Item {
+        QQL.RowLayout {
+            id: styleRowLayout
+            Kirigami.FormData.label: i18n("Style")
+            QQL.Layout.fillWidth: true
+
+            QQC2.CheckBox {
+                id: boldCheckBox
+                text: i18n("Bold")
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+
+            QQC2.SpinBox {
+                // CSS / Qt scale: 100 - 1000
+                id: fontWeight
+                enabled: boldCheckBox.checked
+                from: 100
+                to: 1000
+                stepSize: 100
+
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+
+            QQC2.ToolButton {
+                id: boldHelp
+                icon.name: "help-about"
+
+                QQC2.ToolTip {
+                    visible: boldHelp.hovered
+                    text: i18n("Make the tray text bold.\nAdjust weight between 100 and 1000.")
+                }
+            }
+
+            QQC2.CheckBox {
+                id: italicCheckBox
+                text: i18n("Italic")
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+
+            // Invisible "italic spinbox" for the help icon to align properly
+            QQC2.SpinBox {
+                opacity: 0
+                enabled: false
+
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+
+            QQC2.ToolButton {
+                id: italicHelp
+                icon.name: "help-about"
+
+                QQC2.ToolTip {
+                    visible: italicHelp.hovered
+                    text: i18n("Make the tray text italic.")
+                }
+            }
+        }
+
+        QQL.RowLayout {
+            Kirigami.FormData.label: i18n("Sizes")
+            QQL.Layout.fillWidth: true
+            QQC2.CheckBox {
+                id: useCustomFontSize
+                text: i18n("Font")
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+
+            QQC2.SpinBox {
+                id: customFontSize
+                enabled: useCustomFontSize.checked
+                from: 4
+                to: 72
+
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+
+            QQC2.ToolButton {
+                id: customFontSizeHelp
+                icon.name: "help-about"
+
+                QQC2.ToolTip {
+                    visible: customFontSizeHelp.hovered
+                    text: i18n("Adjust the size of tray text (in pixels).")
+                }
+            }
+
+            QQC2.CheckBox {
+                id: useCustomIconSize
+                text: i18n("Icon")
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+
+            QQC2.SpinBox {
+                id: customIconSize
+                enabled: useCustomIconSize.checked
+                from: 8
+                to: 128
+
+                QQL.Layout.preferredWidth: page.boxWidth
+            }
+            QQC2.ToolButton {
+                id: customIconSizeHelp
+                icon.name: "help-about"
+
+                QQC2.ToolTip {
+                    visible: customIconSizeHelp.hovered
+                    text: i18n("Adjust the size of tray icons (in pixels).")
+                }
+            }
+        }
+
+        Kirigami.Separator {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Battery text ")
+            Kirigami.FormData.label: i18n("Battery Colors")
+            QQL.Layout.fillWidth: true
         }
 
         QQL.RowLayout {
@@ -229,12 +234,22 @@ KCMUtils.SimpleKCM {
                 id: customDefaultColor
                 enabled: useCustomDefaultColor.checked
                 showAlphaChannel: true
+                QQL.Layout.preferredWidth: page.boxWidth
             }
 
-            QQC2.Label {
-                text: i18n("Charging")
-                opacity: 0.7
+            QQC2.ToolButton {
+                id: defaultColorHelp
+                icon.name: "help-about"
+
+                QQC2.ToolTip {
+                    visible: defaultColorHelp.hovered
+                    text: i18n("Use when no other color state applies. When disabled, system color is used instead.")
+                }
             }
+        }
+
+        QQL.RowLayout {
+            Kirigami.FormData.label: i18n("Charging")
 
             QQC2.CheckBox {
                 id: useChargingColor
@@ -244,18 +259,17 @@ KCMUtils.SimpleKCM {
                 id: chargingColor
                 enabled: useChargingColor.checked
                 showAlphaChannel: true
+                QQL.Layout.preferredWidth: page.boxWidth
             }
 
-            MouseArea {
-                id: mouseColors
-                anchors.fill: parent
-                hoverEnabled: true
-                acceptedButtons: Qt.NoButton
-            }
+            QQC2.ToolButton {
+                id: chargingColorHelp
+                icon.name: "help-about"
 
-            QQC2.ToolTip {
-                visible: mouseColors.containsMouse
-                text: i18n("Configure colors for normal and charging states. If default is turned off, system  is used instead.")
+                QQC2.ToolTip {
+                    visible: chargingColorHelp.hovered
+                    text: i18n("Overrides all other colors when device is charging.\nNot all devices are currently supported!")
+                }
             }
         }
 
@@ -264,7 +278,6 @@ KCMUtils.SimpleKCM {
 
             QQC2.CheckBox {
                 id: useZoneOneColor
-                enabled: true
 
                 onCheckedChanged: {
                     if (!checked) {
@@ -277,37 +290,42 @@ KCMUtils.SimpleKCM {
                 id: zoneOneColor
                 enabled: useZoneOneColor.checked
                 showAlphaChannel: true
+                QQL.Layout.preferredWidth: page.boxWidth
             }
 
             QQC2.Label {
                 opacity: useZoneOneColor.checked ? 0.8 : 0.5
-                text: i18n(" below ")
-            }
+                text: i18n("≤")
+                font.pixelSize: Kirigami.Theme.defaultFont.pixelSize * 1.4
+                font.weight: Font.Medium
 
+                QQL.Layout.leftMargin: 4
+                QQL.Layout.rightMargin: 4
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
             QQC2.SpinBox {
                 id: zoneOneThreshold
                 enabled: useZoneOneColor.checked
                 from: 1
                 to: 100
-
-                implicitHeight: zoneOneColor.implicitHeight
+                QQL.Layout.preferredWidth: page.boxWidth
             }
 
             QQC2.Label {
-                opacity: useZoneOneColor.checked ? 0.8 : 0.5
+                opacity: useZoneTwoColor.checked ? 0.8 : 0.5
                 text: i18n("%")
             }
 
-            QQC2.ToolTip {
-                visible: mouseZoneOne.containsMouse
-                text: i18n("Applied when battery level falls below the threshold.")
-            }
+            QQC2.ToolButton {
+                id: zoneOneHelp
+                icon.name: "help-about"
 
-            MouseArea {
-                id: mouseZoneOne
-                anchors.fill: parent
-                hoverEnabled: true
-                acceptedButtons: Qt.NoButton
+                QQC2.ToolTip {
+                    visible: zoneOneHelp.hovered
+                    text: i18n("Applied when battery falls below the set threshold")
+                }
             }
         }
 
@@ -323,11 +341,20 @@ KCMUtils.SimpleKCM {
                 id: zoneTwoColor
                 enabled: useZoneOneColor.checked && useZoneTwoColor.checked
                 showAlphaChannel: true
+                QQL.Layout.preferredWidth: page.boxWidth
             }
 
             QQC2.Label {
-                opacity: useZoneTwoColor.checked ? 1.0 : 0.5
-                text: i18n(" below ")
+                opacity: useZoneOneColor.checked ? 0.8 : 0.5
+                text: i18n("≤")
+                font.pixelSize: Kirigami.Theme.defaultFont.pixelSize * 1.4
+                font.weight: Font.Medium
+
+                QQL.Layout.leftMargin: 4
+                QQL.Layout.rightMargin: 4
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
 
             QQC2.SpinBox {
@@ -335,25 +362,22 @@ KCMUtils.SimpleKCM {
                 enabled: useZoneOneColor.checked && useZoneTwoColor.checked
                 from: 0
                 to: 100
-
-                implicitHeight: zoneTwoColor.implicitHeight
+                QQL.Layout.preferredWidth: page.boxWidth
             }
 
             QQC2.Label {
-                opacity: useZoneTwoColor.checked ? 1.0 : 0.5
+                opacity: useZoneTwoColor.checked ? 0.8 : 0.5
                 text: i18n("%")
             }
 
-            QQC2.ToolTip {
-                visible: mouseZoneTwo.containsMouse
-                text: i18n("Applied when battery level falls below the threshold.")
-            }
+            QQC2.ToolButton {
+                id: zoneTwoHelp
+                icon.name: "help-about"
 
-            MouseArea {
-                id: mouseZoneTwo
-                anchors.fill: parent
-                hoverEnabled: true
-                acceptedButtons: Qt.NoButton
+                QQC2.ToolTip {
+                    visible: zoneTwoHelp.hovered
+                    text: i18n("Applied when battery falls below the set threshold")
+                }
             }
         }
     }
