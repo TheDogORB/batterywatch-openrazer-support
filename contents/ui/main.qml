@@ -33,12 +33,16 @@ PlasmoidItem {
     // List of providers (in priority order)
     property var providers: [upowerProvider, companionProvider, openLinkHubProvider, openRazerProvider]
 
+    // Debug mode
+    property bool debugMode: Plasmoid.configuration.debugMode
+    property var allDevices: debugMode ? testDevices : realDevices
+
     // ═══════════════════════════════════════════════════════════════════════
     // DEVICE STATE
     // ═══════════════════════════════════════════════════════════════════════
 
     // Merged devices from all providers
-    property var allDevices: mergeDevices(providers.map(p => p.devices))
+    property var realDevices: mergeDevices(providers.map(p => p.devices))
     property var hiddenDevices: []
 
     property int visibleDeviceCount: {
@@ -78,7 +82,8 @@ PlasmoidItem {
                         icon: device.icon,
                         percentage: bat.percentage,
                         label: bat.label,
-                        deviceSerial: device.serial
+                        deviceSerial: device.serial,
+                        charging: bat.charging
                     });
                 }
             } else {
@@ -87,7 +92,8 @@ PlasmoidItem {
                     icon: device.icon,
                     percentage: device.percentage,
                     label: null,
-                    deviceSerial: device.serial
+                    deviceSerial: device.serial,
+                    charging: device.charging
                 });
             }
         }
@@ -137,6 +143,7 @@ PlasmoidItem {
     // i18n: %1 is the version number.
     toolTipMainText: i18n("BatteryWatch v%1", Plasmoid.metaData.version)
     toolTipSubText: {
+        // Unable to implement colours, custom hover menu would be necessary
         if (allDevices.length === 0) {
             return i18n("No connected devices");
         }
@@ -181,6 +188,24 @@ PlasmoidItem {
             return PlasmaCore.Types.ActiveStatus;
         }
         return hasAnyDevices ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
+    }
+
+    function batteryColor(percentage, charging) {
+        // Charging
+        if (Plasmoid.configuration.useChargingColor && charging) {
+            return Plasmoid.configuration.chargingColor;
+        }
+
+        // Zone 2
+        if (Plasmoid.configuration.useZoneTwoColor && percentage <= Plasmoid.configuration.zoneTwoThreshold)
+            return Plasmoid.configuration.zoneTwoColor;
+
+        // Zone 1
+        if (Plasmoid.configuration.useZoneOneColor && percentage <= Plasmoid.configuration.zoneOneThreshold)
+            return Plasmoid.configuration.zoneOneColor;
+
+        // Default
+        return Plasmoid.configuration.useCustomDefaultColor ? Plasmoid.configuration.customDefaultColor : Kirigami.Theme.textColor;
     }
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -300,6 +325,7 @@ PlasmoidItem {
                     PlasmaComponents.Label {
                         // i18n: %1 is the charge percentage value.
                         text: i18n("%1%", modelData.percentage)
+                        color: batteryColor(modelData.percentage, modelData.charging)
                         font.family: Plasmoid.configuration.fontFamily !== "" ? Plasmoid.configuration.fontFamily : Kirigami.Theme.smallFont.family
                         font.weight: Plasmoid.configuration.fontBold ? Plasmoid.configuration.fontWeight : Font.Normal
                         font.italic: Plasmoid.configuration.fontItalic
@@ -436,13 +462,15 @@ PlasmoidItem {
                                                 model: hasMultipleBatteries ? device.batteries : []
 
                                                 PlasmaComponents.Label {
+                                                    textFormat: Text.RichText
                                                     text: {
                                                         var bat = modelData;
                                                         var label = bat.label || i18n("Battery");
                                                         var charging = bat.charging ? " ⚡" : "";
+                                                        var color = batteryColor(bat.percentage, bat.charging);
                                                         // i18n: %1 is the battery label or simply the word, ‘Battery’. %2 is the charge percentage value.
                                                         // %3 is a Unicode lightning symbol displayed when the device is charging.
-                                                        return i18n("%1: %2%%3", label, bat.percentage, charging);
+                                                        return i18n("%1: <span style=\"color:%4\">%2%</span>%3", label, bat.percentage, charging, color);
                                                     }
                                                     font.pixelSize: Kirigami.Theme.smallFont.pixelSize
                                                 }
@@ -494,6 +522,7 @@ PlasmoidItem {
                                         PlasmaComponents.Label {
                                             visible: !hasMultipleBatteries
                                             text: i18n("%1%", device.percentage)
+                                            color: batteryColor(device.percentage, device.charging)
                                             font.bold: true
                                             Layout.minimumWidth: Kirigami.Units.gridUnit * 2
                                             horizontalAlignment: Text.AlignRight
@@ -521,4 +550,56 @@ PlasmoidItem {
             }
         }
     }
+    // ═══════════════════════════════════════════════════════════════════════
+    // DEBUG
+    // ═══════════════════════════════════════════════════════════════════════
+
+    // A bunch of fake devices for debugging
+    property var testDevices: [
+
+        // Headphones with 3 batteries
+        {
+            name: "Headphones",
+            serial: "test-1",
+            icon: "audio-headphones",
+            batteries: [
+                {
+                    label: "Left",
+                    percentage: 50,
+                    charging: true
+                },
+                {
+                    label: "Right",
+                    percentage: 30,
+                    charging: false
+                },
+                {
+                    label: "Case",
+                    percentage: 10,
+                    charging: false
+                }
+            ]
+        },
+        {
+            name: "Mouse",
+            serial: "Mouse-test",
+            icon: "input-mouse",
+            percentage: 50,
+            charging: true
+        },
+        {
+            name: "Keyboard",
+            serial: "Keyboard-test-warning",
+            icon: "input-keyboard",
+            percentage: 30,
+            charging: false
+        },
+        {
+            name: "Gamepad",
+            serial: "Gamepad-test-critical",
+            icon: "input-gamepad",
+            percentage: 10,
+            charging: false
+        }
+    ]
 }
