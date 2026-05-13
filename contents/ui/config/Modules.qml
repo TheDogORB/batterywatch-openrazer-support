@@ -46,7 +46,6 @@ KCMUtils.SimpleKCM {
 
             QQC2.CheckBox {
                 id: useOpenRazerIntegration
-                enabled: false
             }
         }
 
@@ -55,9 +54,14 @@ KCMUtils.SimpleKCM {
 
             QQC2.SpinBox {
                 id: openRazerPollingTime
-                enabled: useOpenRazerIntegration.checked && false
+                enabled: useOpenRazerIntegration.checked
                 from: 1
                 to: 3600
+            }
+
+            QQC2.Label {
+                text: i18n("s")
+                opacity: useOpenRazerIntegration.checked ? 0.7 : 0.5
             }
         }
     }
