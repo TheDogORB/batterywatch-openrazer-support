@@ -74,8 +74,12 @@ Item {
             //
             // openrazer can report battery being 100% charged up to 30s after
             // connecting a device
-            if (typeof d.battery !== "number" || d.battery <= 0)
+            if (typeof d.battery !== "number") {
                 continue;
+            }
+            if (d.firmware === undefined || d.firmware === "v0.0") {
+                continue;
+            }
             result.push({
                 name: d.name || i18n("Unknown Razer Device"),
                 serial: id,
@@ -124,6 +128,7 @@ Item {
             return;
         batterySource.connectSource(`qdbus org.razer /org/razer/device/${id} razer.device.power.getBattery`);
         chargingSource.connectSource(`qdbus org.razer /org/razer/device/${id} razer.device.power.isCharging`);
+        detailsSource.connectSource(`qdbus org.razer /org/razer/device/${id} razer.device.misc.getFirmware`);
     }
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -142,9 +147,9 @@ Item {
         onNewData: (src, data) => {
             disconnectSource(src);
 
-            var ids = data.stdout.split("\n").map(s => s.trim()).filter(Boolean);
+            const ids = data.stdout.split("\n").map(s => s.trim()).filter(Boolean);
 
-            var current = {};
+            let current = {};
 
             ids.forEach(id => {
                 current[id] = true;
@@ -153,6 +158,7 @@ Item {
                     root.deviceData[id] = {
                         name: "",
                         type: "",
+                        firmware: undefined,
                         battery: undefined,
                         charging: false
                     };
@@ -185,7 +191,6 @@ Item {
 
     // Updates percentage (battery charge) values via razer.device.power.getBattery
     // if the func exists for a device -> func doesn't exist for wired devices
-    // if 0 = device with battery with no connection
     P5Support.DataSource {
         id: batterySource
         engine: "executable"
@@ -196,7 +201,7 @@ Item {
 
             if (!src.includes("/device/"))
                 return;
-            var id = src.split("/device/")[1].split(" ")[0];
+            const id = src.split("/device/")[1].split(" ")[0];
             if (!root.deviceData[id])
                 return;
 
@@ -208,7 +213,7 @@ Item {
             }
 
             // 0 is handled in updateOpenRazerDevices()
-            var raw = parseFloat(data.stdout);
+            const raw = parseFloat(data.stdout);
             if (isNaN(raw))
                 return;
             root.deviceData[id].battery = Math.round(Math.max(0, Math.min(100, raw)));
@@ -232,7 +237,7 @@ Item {
 
             if (!src.includes("/device/"))
                 return;
-            var id = src.split("/device/")[1].split(" ")[0];
+            const id = src.split("/device/")[1].split(" ")[0];
             if (!root.deviceData[id])
                 return;
 
@@ -258,17 +263,24 @@ Item {
 
             if (!src.includes("/device/"))
                 return;
-            var id = src.split("/device/")[1].split(" ")[0];
-            if (!root.deviceData[id])
+            const id = src.split("/device/")[1].split(" ")[0];
+            if (!root.deviceData[id]) {
                 return;
+            }
+            // name/type fetched once on connect
+            // ignore errors to avoid overwriting with empty/garbage values
+            if (data.stderr && data.stderr.length > 0) {
+                return;
+            }
             if (src.endsWith("getDeviceName")) {
                 root.deviceData[id].name = data.stdout.trim();
             } else if (src.endsWith("getDeviceType")) {
                 root.deviceData[id].type = data.stdout.trim();
+            } else if (src.endsWith("getFirmware")) {
+                root.deviceData[id].firmware = data.stdout.trim();
             }
 
-            if (typeof root.deviceData[id].battery === "number" && root.deviceData[id].battery > 0)
-                Qt.callLater(root.updateOpenRazerDevices);
+            Qt.callLater(root.updateOpenRazerDevices);
         }
     }
 
